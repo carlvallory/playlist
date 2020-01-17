@@ -11,6 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'PlaylistController@index');
+Route::get('/playlist', 'PlaylistController@playlist');
+Route::post('/add', 'PlaylistController@add');
+
+
+Route::resource('temas', 'TemaController');
+
+Route::resource('users', 'UserController')->middleware('auth');
+
+
+Route::resource('users', 'UserController')->middleware('auth');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Route::resource('users', 'UserController')->middleware('auth');
