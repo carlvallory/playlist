@@ -6,25 +6,24 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Tema
+ * Class Album
  * @package App\Models
- * @version January 17, 2020, 2:13 pm UTC
+ * @version January 18, 2020, 5:05 am UTC
  *
- * @property string artist_id
- * @property string album_id
+ * @property string artista_id
  * @property string name
+ * @property string images
  */
-class Tema extends Model
+class Album extends Model
 {
-
-    public $table = 'temas';
-
+    public $table = 'albums';
+    
 
 
     public $fillable = [
-        'artist_id',
-        'album_id',
-        'name'
+        'artista_id',
+        'name',
+        'image'
     ];
 
     /**
@@ -34,9 +33,9 @@ class Tema extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'artist_id' => 'string',
-        'album_id' => 'string',
-        'name' => 'string'
+        'artista_id' => 'string',
+        'name' => 'string',
+        'image' => 'string'
     ];
 
     /**
@@ -45,18 +44,12 @@ class Tema extends Model
      * @var array
      */
     public static $rules = [
-        
+    
     ];
 
-    
     public function artist()
     {
         return $this->belongsTo('App\Artist');
-    }
-    
-    public function album()
-    {
-        return $this->belongsTo('App\Album');
     }
     
 }

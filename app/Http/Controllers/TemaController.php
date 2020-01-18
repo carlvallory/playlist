@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Artist;
+use App\Album;
 use App\Http\Requests\CreateTemaRequest;
 use App\Http\Requests\UpdateTemaRequest;
 use App\Repositories\TemaRepository;
@@ -42,7 +44,10 @@ class TemaController extends AppBaseController
      */
     public function create()
     {
-        return view('temas.create');
+        $artists = Artist::all()->pluck('name');
+        $albums = Album::all()->pluck('name');
+        
+        return view('temas.create', compact('artists', 'albums'));
     }
 
     /**
@@ -92,6 +97,8 @@ class TemaController extends AppBaseController
      */
     public function edit($id)
     {
+        $artists = Artist::all()->pluck('name');
+        $albums = Album::all()->pluck('name');
         $tema = $this->temaRepository->find($id);
 
         if (empty($tema)) {
@@ -100,7 +107,7 @@ class TemaController extends AppBaseController
             return redirect(route('temas.index'));
         }
 
-        return view('temas.edit')->with('tema', $tema);
+        return view('temas.edit', compact('artists','albums'))->with('tema', $tema);
     }
 
     /**

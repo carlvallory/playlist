@@ -1,13 +1,13 @@
 <!-- Artist Id Field -->
 <div class="form-group">
     {!! Form::label('artist_id', 'Artist Id:') !!}
-    <p>{{ $tema->artist_id }}</p>
+    <p>{{ (!is_null($tema->artist) ? $tema->artist->name: $tema->artist_id ) }}</p>
 </div>
 
 <!-- Album Id Field -->
 <div class="form-group">
     {!! Form::label('album_id', 'Album Id:') !!}
-    <p>{{ $tema->album_id }}</p>
+    <p>{{ (!is_null($tema->album) ? $tema->album->name: $tema->album_id ) }}</p>
 </div>
 
 <!-- Name Field -->

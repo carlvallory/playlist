@@ -13,7 +13,9 @@
     <title>Miller App</title>
   </head>
   <body class="body-banda">
-   
+   @php
+       $k=$l=0;
+    @endphp
       
     <div class="container">
       <div class="row">
@@ -21,12 +23,10 @@
         <div class="col">
         
             @foreach($pl as $tema)
-                @if($loop->last)
-                    @php
-                        $remain = ($loop->count -8)*(-1);
-                    @endphp
-                @endif
                 @if($loop->iteration < 8)
+                    @php
+                        $k++;
+                    @endphp
                     <div class="track-p-banda">
                         <div class="numero-p-banda">{{$loop->iteration}}</div>
                         <div class="titulo-p-banda"><span>{{$tema->temas[0]->name}}</span><br />
@@ -36,9 +36,9 @@
                 @endif
             @endforeach
             
-            @for ($i = 0; $i < $remain; $i++)
+            @for ($i = 0; $i < (8-$k); $i++)
                 <div class="track-p-banda">
-                    <div class="numero-p-banda">{{$i}}</div>
+                    <div class="numero-p-banda">{{$i+1}}</div>
                     <div class="titulo-p-banda"><span class="pendiente" >PENDIENTE</span>
                     </div>
                 </div>
@@ -55,6 +55,9 @@
             @foreach($pl as $tema)
                 
                 @if($loop->iteration >= 8)
+                    @php
+                        $l++;
+                    @endphp
                     <div class="track-p-banda">
                         <div class="numero-p-banda">{{$loop->iteration}}</div>
                         <div class="titulo-p-banda"><span>{{$tema->temas[0]->name}}</span><br />
@@ -62,17 +65,11 @@
                         </div>
                     </div>
                 @endif
-                @if($loop->last)
-                    @php
-                            $remain = ($loop->count -8)*(-1);
-
-                    @endphp                    
-                @endif
             @endforeach
             
-            @for ($i = 0; $i < $remain; $i++)
+            @for ($i = 0; $i < (8-$l); $i++)
                 <div class="track-p-banda">
-                    <div class="numero-p-banda">{{$i}}</div>
+                    <div class="numero-p-banda">{{$i+9}}</div>
                     <div class="titulo-p-banda"><span class="pendiente" >PENDIENTE</span>
                     </div>
                 </div>

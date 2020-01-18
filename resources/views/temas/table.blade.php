@@ -11,8 +11,8 @@
         <tbody>
         @foreach($temas as $tema)
             <tr>
-                <td>{{ $tema->artist_id }}</td>
-            <td>{{ $tema->album_id }}</td>
+                <td>{{ (!is_null($tema->artist) ? $tema->artist->name: $tema->artist_id ) }}</td>
+            <td>{{ (!is_null($tema->album) ? $tema->album->name: $tema->album_id ) }}</td>
             <td>{{ $tema->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['temas.destroy', $tema->id], 'method' => 'delete']) !!}
